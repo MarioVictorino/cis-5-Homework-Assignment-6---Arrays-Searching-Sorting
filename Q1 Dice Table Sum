@@ -1,0 +1,97 @@
+#include <iostream>  //Input/Output Library
+#include <iomanip>   //Format Library
+using namespace std;
+
+//User Libraries
+
+//Global Constants, no Global Variables are allowed
+//Math/Physics/Conversions/Higher Dimensions - i.e. PI, e, etc...
+const int COLS=7;
+
+
+//const int nCOLS = 7;
+
+//Function Prototypes
+void fillTbl(int [][COLS],int);
+void prntTbl(const int [][COLS],int);
+
+//Execution Begins Here!
+int main(int argc, char** argv) {
+    //Declare Variables
+    const int ROWS=6;
+    int tablSum[ROWS][COLS];
+    
+    //Initialize or input i.e. set variable values
+    fillTbl(tablSum,ROWS);
+    
+    //Display the outputs
+    cout << "Think of this as the Sum of Dice Table" << endl;
+    cout << setw(24) << "C o l u m n s" << endl;
+    
+    
+    
+    prntTbl(tablSum,ROWS);
+
+    //Exit stage right or left!
+    return 0;
+}
+
+void fillTbl(int tablSum[][COLS],int ROWS){
+    
+    for(int row=0;row<ROWS;row++){
+        for(int col=0;col<COLS;col++){
+            tablSum[row][col] = row + col + 1;
+        }
+    }
+}
+
+void prntTbl(const int tablSum[][COLS],int ROWS){
+    int temp;
+    temp = 0;
+    int s;
+    s = 0;
+    
+    for(int row=0;row<ROWS;row++){
+        for(int col=0;col<COLS;col++){
+            if (temp == 0){
+                cout << setw(6) << "|" << setw(4);
+                for(int col = 0; col < COLS - 1; col++){
+                    cout << tablSum[row][col]<<setw(4);
+                    temp++;
+                }
+                cout << endl;
+                cout << "----------------------------------" << endl;
+            }
+            
+            if (row == 1 && col == 0){
+                cout << "R  ";
+            }
+            if (row == 2 && col == 0){
+                cout << "O  ";
+            }
+            if (row == 3 && col == 0){
+                cout << "W  ";
+            }
+            if (row == 4 && col == 0){
+                cout << "S  ";
+            }
+            
+            if (col != 0){
+                cout << setw(4);    
+            }
+            if (row == 0 && col == 0){
+                cout << "   ";
+            }
+            if (row == 5 && col == 0){
+                cout << "   ";
+            }
+            
+            cout <<tablSum[row][col];
+            if(col == 0){
+                cout << " |";
+            }
+            
+        }
+        cout<<endl;
+    }
+}
